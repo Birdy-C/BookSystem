@@ -55,6 +55,7 @@ void BookSystem::SL_search_book()
 
 void BookSystem::SL_search_book_empty() 
 {
-	
-
+	ui.lineEdit->setText("");
+	ui.lineEdit_2->setText("");
+	ui.lineEdit_3->setText("");
 }

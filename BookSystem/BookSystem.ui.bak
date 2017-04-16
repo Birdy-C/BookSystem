@@ -226,7 +226,7 @@
      <attribute name="title">
       <string>单本入库</string>
      </attribute>
-     <widget class="QTableView" name="tableView_insert1">
+     <widget class="QTableView" name="tableView_select_2">
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -331,7 +331,7 @@
        <string>插入</string>
       </property>
      </widget>
-     <widget class="QTableView" name="tableView_insert1_type">
+     <widget class="QTableView" name="tableView_select_3">
       <property name="geometry">
        <rect>
         <x>10</x>

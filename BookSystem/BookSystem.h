@@ -27,11 +27,18 @@ public:
 private:
 	Ui::BookSystemClass ui;
 	QSqlDatabase db;
-	QSqlTableModel *select_model;
+	QSqlTableModel *select_model;//
+	QSqlTableModel *select_model_insert1;
+	QSqlTableModel *select_model_insert1_tp;
+
 
 public slots:
+	void empty(int);
 	void SL_search_book();
 	void SL_search_book_order();
 	void SL_search_book_empty();
-
+	void SL_insert1_empty();
+	void SL_insert1_selectType(const QModelIndex &, const QModelIndex &);
+	void SL_insert1_selectBook(const QModelIndex &, const QModelIndex &);
+	void SL_insert1();
 };
