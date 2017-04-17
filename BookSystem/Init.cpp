@@ -61,8 +61,8 @@ bool BookSystem::initSQL()
 	//NO2 INSERT1
 	select_model_insert1 = new QSqlTableModel(this);
 	select_model_insert1->setTable("book");
-	select_model_insert1->removeColumns(7, 2);	//remove Number & Stocks
-	select_model_insert1->removeColumn(0);		//remove Book_id
+	//select_model_insert1->removeColumns(7, 2);	//remove Number & Stocks
+	//select_model_insert1->removeColumn(0);		//remove Book_id
 
 	select_model_insert1->select();
 	ui.tableView_insert1->setModel(select_model_insert1);
@@ -101,6 +101,10 @@ void BookSystem::initMotion()
 
 	//NO 2 INSERT1
 	connect(ui.pushButton_insert1, SIGNAL(clicked()), this, SLOT(SL_insert1()));
+	connect(ui.pushButton_delete, SIGNAL(clicked()), this, SLOT(SL_delete()));
+	connect(ui.lineEdit_4, SIGNAL(textEdited(const QString & )), this, SLOT(SL_insert1_change(const QString & )));
+	connect(ui.lineEdit_11, SIGNAL(textChanged(const QString & )), this, SLOT(SL_insert1_IDchange(const QString & )));
+
 	//这两行注意model改变
 	connect(ui.tableView_insert1->selectionModel(), SIGNAL(currentRowChanged(const QModelIndex &, const QModelIndex &)), 
 		this, SLOT(SL_insert1_selectBook(const QModelIndex &, const QModelIndex &)));

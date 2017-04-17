@@ -41,4 +41,8 @@ public slots:
 	void SL_insert1_selectType(const QModelIndex &, const QModelIndex &);
 	void SL_insert1_selectBook(const QModelIndex &, const QModelIndex &);
 	void SL_insert1();
+	void SL_delete();
+	void SL_insert1_change(const QString & text);
+	void SL_insert1_IDchange(const QString & text);
+
 };

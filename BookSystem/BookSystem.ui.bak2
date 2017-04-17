@@ -377,7 +377,7 @@
        <string>如果信息完全相同则自动合并,插入时ID根据类别自动生成</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_delete">
+     <widget class="QPushButton" name="pushButton_insert1_2">
       <property name="geometry">
        <rect>
         <x>700</x>

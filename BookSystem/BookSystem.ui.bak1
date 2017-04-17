@@ -321,8 +321,8 @@
      <widget class="QPushButton" name="pushButton_insert1">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>30</y>
+        <x>600</x>
+        <y>75</y>
         <width>75</width>
         <height>23</height>
        </rect>
@@ -346,7 +346,7 @@
        <rect>
         <x>10</x>
         <y>70</y>
-        <width>341</width>
+        <width>531</width>
         <height>31</height>
        </rect>
       </property>
@@ -367,20 +367,20 @@
      <widget class="QLabel" name="label_13">
       <property name="geometry">
        <rect>
-        <x>470</x>
+        <x>500</x>
         <y>0</y>
-        <width>311</width>
+        <width>281</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>如果信息完全相同则自动合并,插入时ID根据类别自动生成</string>
+       <string>如果信息完全相同则自动合并,ID根据类别自动生成</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_delete">
+     <widget class="QPushButton" name="pushButton_insert1_2">
       <property name="geometry">
        <rect>
-        <x>700</x>
+        <x>690</x>
         <y>75</y>
         <width>75</width>
         <height>23</height>
@@ -388,29 +388,6 @@
       </property>
       <property name="text">
        <string>删除</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_14">
-      <property name="geometry">
-       <rect>
-        <x>605</x>
-        <y>65</y>
-        <width>54</width>
-        <height>12</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>ID</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_11">
-      <property name="geometry">
-       <rect>
-        <x>600</x>
-        <y>80</y>
-        <width>91</width>
-        <height>20</height>
-       </rect>
       </property>
      </widget>
     </widget>

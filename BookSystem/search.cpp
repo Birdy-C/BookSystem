@@ -49,7 +49,7 @@ void BookSystem::SL_search_book()
 	ui.plainTextEdit->setPlainText(search);
 	select_model->setFilter(search);
 	SL_search_book_order();
-	select_model->select();
+	//select_model->select();在前一个函数中已经存在
 }
 
 
