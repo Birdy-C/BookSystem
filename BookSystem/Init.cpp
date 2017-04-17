@@ -7,7 +7,7 @@
 #include "BookSystem.h"
 
 BookSystem::BookSystem(QWidget *parent)
-	: QMainWindow(parent)
+	: QMainWindow(parent), load_statues(false)
 {
 	ui.setupUi(this);
 	initSQL();
@@ -95,6 +95,33 @@ bool BookSystem::initSQL()
 
 	ui.tableView_insert2->setModel(select_model_insert2);
 	ui.tableView_insert2->setSelectionBehavior(QAbstractItemView::SelectRows);//整行选中
+	
+																			  
+	//NO4
+	//QSqlTableModel *select_model_borrow_book;
+	//QSqlTableModel *select_model_borrow_ID;
+	select_model_borrow_ID = new QSqlTableModel(this);
+	select_model_borrow_ID->setTable("borrow_info");
+	select_model_borrow_ID->select();
+	ui.tableView_borrow->setModel(select_model_borrow_ID);
+	ui.tableView_borrow->setEditTriggers(QAbstractItemView::NoEditTriggers); //不可编辑
+	ui.tableView_borrow->setSelectionBehavior(QAbstractItemView::SelectRows);//整行选中
+	
+	select_model_borrow_book = new QSqlTableModel(this);
+	select_model_borrow_book->setTable("book");
+	select_model_borrow_book->select();
+	ui.tableView_borrow_book->setModel(select_model_borrow_book);
+	ui.tableView_borrow_book->setEditTriggers(QAbstractItemView::NoEditTriggers); //不可编辑
+	ui.tableView_borrow_book->setSelectionBehavior(QAbstractItemView::SelectRows);//整行选中
+	
+	select_model_borrow_info = new QSqlTableModel(this);
+	select_model_borrow_info->setTable("library_card");
+	select_model_borrow_info->select();
+	ui.tableView_borrow_info->setModel(select_model_borrow_info);
+	ui.tableView_borrow_info->setEditTriggers(QAbstractItemView::NoEditTriggers); //不可编辑
+	ui.tableView_borrow_info->setSelectionBehavior(QAbstractItemView::SelectRows);//整行选中
+
+
 	return true;  	
 }
 
@@ -142,6 +169,14 @@ void BookSystem::initMotion()
 	connect(ui.pushButton_6, SIGNAL(clicked()), this, SLOT(SL_insert2_delete()));
 	connect(ui.pushButton_7, SIGNAL(clicked()), this, SLOT(SL_insert2_delete_current()));
 
+	//NO 4
+	connect(ui.lineEdit_14, SIGNAL(textEdited(const QString &)), this, SLOT(SL_borrow_Bookchange(const QString &)));
+	connect(ui.lineEdit_12, SIGNAL(textEdited(const QString &)), this, SLOT(SL_borrow_IDchange(const QString &)));
+	connect(ui.pushButton_10, SIGNAL(clicked()), this, SLOT(SL_borrow()));
+	connect(ui.pushButton_11, SIGNAL(clicked()), this, SLOT(SL_borrow_return()));
+
+	//NO 5
+	connect(ui.pushButton_9, SIGNAL(clicked()), this, SLOT(SL_user_insert()));
 	
 
 }

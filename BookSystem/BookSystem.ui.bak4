@@ -598,7 +598,7 @@
      <widget class="QLabel" name="label_20">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>260</x>
         <y>20</y>
         <width>54</width>
         <height>12</height>
@@ -611,9 +611,9 @@
      <widget class="QTableView" name="tableView_borrow_info">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>320</x>
         <y>20</y>
-        <width>431</width>
+        <width>451</width>
         <height>61</height>
        </rect>
       </property>
