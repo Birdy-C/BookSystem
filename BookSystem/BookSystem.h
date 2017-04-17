@@ -8,6 +8,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSqlTableModel>
+#include <QSqlRecord>
 #include <QMessageBox>  
 #include "ui_BookSystem.h"
 
@@ -23,18 +24,28 @@ public:
 	~BookSystem();
 	bool initSQL();//³õÊ¼»¯
 	void initMotion();
-
+	void loadIn_Setboard();
 private:
+	void insert2_line_temp(QString);
+	bool SL_insert_book(QString Type, QString Title, QString Publisher, QString Publish_year, QString  Author, QString Price, QString Number);
 	Ui::BookSystemClass ui;
 	QSqlDatabase db;
 	QSqlTableModel *select_model;//
 	QSqlTableModel *select_model_insert1;
 	QSqlTableModel *select_model_insert1_tp;
+	QSqlTableModel *select_model_insert2;
+
+	//µÇÂ¼
+	QPushButton *pushButton_back;
 
 
 public slots:
+	void SL_rollback();
+	void SL_transaction();
+
+
 	void empty(int);
-	void SL_search_book();
+	void SL_search_book(const QString &);
 	void SL_search_book_order();
 	void SL_search_book_empty();
 	void SL_insert1_empty();
@@ -44,5 +55,8 @@ public slots:
 	void SL_delete();
 	void SL_insert1_change(const QString & text);
 	void SL_insert1_IDchange(const QString & text);
-
+	void SL_readtxt();
+	void SL_insert2();
+	void SL_insert2_delete();
+	void SL_insert2_delete_current();
 };

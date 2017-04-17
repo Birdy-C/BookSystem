@@ -88,6 +88,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="insert1.cpp" />
+    <ClCompile Include="insert2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="search.cpp" />
     <ClCompile Include="stdafx.cpp">

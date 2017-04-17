@@ -6,6 +6,7 @@
 #include "stdafx.h"
 #include "BookSystem.h"
 
+/*清空输入的信息*/
 void BookSystem::SL_insert1_empty()
 {
 	ui.lineEdit_4->setText("");
@@ -17,9 +18,13 @@ void BookSystem::SL_insert1_empty()
 	ui.lineEdit_10->setText("");
 	ui.lineEdit_11->setText("");
 
+	select_model_insert1->setFilter("");
+	select_model_insert1->select();
+
 
 }
 
+/*选择类型*/
 void BookSystem::SL_insert1_selectType(const QModelIndex &, const QModelIndex &)
 {
 	QModelIndex index=ui.tableView_insert1_type->currentIndex();
@@ -28,6 +33,7 @@ void BookSystem::SL_insert1_selectType(const QModelIndex &, const QModelIndex &)
 	ui.lineEdit_8->setText(str1);
 }
 
+/*选择书*/
 void BookSystem::SL_insert1_selectBook(const QModelIndex &, const QModelIndex &)
 {
 	QModelIndex index=ui.tableView_insert1->currentIndex();
@@ -69,22 +75,48 @@ void BookSystem::SL_insert1_selectBook(const QModelIndex &, const QModelIndex &)
 		str = temp.data().toString();
 		ui.lineEdit_11->setText(str);
 
+		//库存
+		temp = index.sibling(index.row(), 7);
+		str = temp.data().toString();
+		ui.lineEdit_10->setText(str);
+
+
 
 	}
 }
 
+/*单本插入*/
 void BookSystem::SL_insert1()
 {
+	if(SL_insert_book(ui.lineEdit_8->text(), ui.lineEdit_4->text(), ui.lineEdit_5->text(), ui.lineEdit_6->text(), 
+		ui.lineEdit_7->text(), ui.lineEdit_9->text(), ui.lineEdit_10->text()))
+	{
+		select_model_insert1->select();//更新显示
+		QMessageBox::about(0, QObject::tr("SUCCESS"), "Success in inserting book <" + ui.lineEdit_4->text() + ">");
+		SL_insert1_empty();
 
-	QString Type = ui.lineEdit_8->text();
+	}
+
+}
+
+bool BookSystem::SL_insert_book(QString Type, QString Title, QString Publisher,
+	QString Publish_year, QString  Author, QString Price, QString Number) 
+{
 	QString ID;
 
+	if (""== Title )
+	{
+		QMessageBox::warning(0, QObject::tr("INACCURACY DATA"), "Please put in accurate name");
+		return false;
+	}
+
+
 	//如果得到的是零或者负数
-	int number_in = ui.lineEdit_10->text().toInt();
+	int number_in = Number.toInt();
 	if (number_in <= 0)
 	{
 		QMessageBox::warning(0, QObject::tr("INACCURACY DATA"), "Please check the number");
-		return;
+		return false;
 	}
 	QString number = QString::number(number_in, 10);//取整
 
@@ -92,68 +124,55 @@ void BookSystem::SL_insert1()
 
 	QSqlQuery query_getID("select MAX(Book_id)+1 from book where Type = '" + Type + "'");
 
-	if (query_getID.next()) 
+	if (query_getID.next())
 	{
 		ID = query_getID.value(0).toString();
-		ui.plainTextEdit_2->setPlainText(ID);
 	}
-	else
+	if (ID == "")
 	{
-		QSqlQuery query_temp("select Type_number * 1000 from type where Book_type = '" + Type + "'");
+		QSqlQuery query_temp("select Type_number * 1000 + 1 from type where Book_type = '" + Type + "'");
+		ui.plainTextEdit_3->setPlainText(ID);
+
 		if (query_temp.next())
 		{
-			ui.plainTextEdit_2->setPlainText(ID);
-
+			ID = query_temp.value(0).toString();
 		}
-		else 
-		{
-			QMessageBox::warning(0, QObject::tr("NO SUCH TYPE"), "make sure you add the accuracy type");
-			return;
-		}
-	}
-
-	QString insert1;
-	{
-		insert1 = "insert into book (Book_id,Type,Title,Publisher,Publish_year,Author,Price,Number,Stocks)values ('";
-				insert1 += ID;
-		insert1 += "','";
-		insert1 += Type;
-		insert1 += "','";
-		insert1 += ui.lineEdit_4->text();
-		insert1 += "','";
-		insert1 += ui.lineEdit_5->text();
-		insert1 += "','";
-		insert1 += ui.lineEdit_6->text();
-		insert1 += "','";
-		insert1 += ui.lineEdit_7->text();
-		insert1 += "','";
-		insert1 += ui.lineEdit_9->text();
-		insert1 += "','";
-		
-		insert1 += number;
-		insert1 += "','";
-		insert1 += number;
-		insert1 += "');";
-		ui.plainTextEdit_2->setPlainText(insert1);
-	}
-
-	{
-		QSqlQuery query(insert1);
-		if (!query.isActive())
-		{
-			QMessageBox::warning(0, QObject::tr("Database Error"), "Please check the input ,especially the accurcy in year");
-			return;
-		}	
 		else
 		{
-			QMessageBox::about(0, QObject::tr("SUCCESS"), "Success in inserting book <" + ui.lineEdit_4->text()+">");
-			SL_insert1_empty();
-			select_model_insert1->select();//更新显示
-
+			QMessageBox::warning(0, QObject::tr("NO SUCH TYPE"), "make sure you add the accuracy type");
+			return false;
 		}
 	}
-}
 
+	
+	//插入
+	QSqlQuery insert;
+	insert.prepare("INSERT INTO book (Book_id,Type,Title,Publisher,Publish_year,Author,Price,Number,Stocks) "
+		"VALUES (?,?,?,?,?,?,?,?,?);");
+	insert.addBindValue(ID);
+	insert.addBindValue(Type);
+	insert.addBindValue(Title);
+	insert.addBindValue(Publisher);
+	insert.addBindValue(Publish_year);
+	insert.addBindValue(Author);
+	insert.addBindValue(Price);
+	insert.addBindValue(Number);
+	insert.addBindValue(Number);
+	insert.exec();
+
+	if (!insert.isActive())
+	{
+		QMessageBox::warning(0, QObject::tr("Database Error"), "Please check the input ,especially the accurcy in publish year,"
+			"or maybe the ID need to be reset.");
+		//数据库返回错误的几种可能性 1.主键约束即 ID的生成有一定不合理性 2.trigger的约束 年份大于1800 小于现在的年份
+		return false;
+	}
+
+	return true;
+
+
+}
+/*删除操作*/
 void BookSystem::SL_delete()
 {
 
@@ -228,6 +247,7 @@ void BookSystem::SL_delete()
 
 }
 
+/*根据输入的书名进行筛选*/
 void BookSystem::SL_insert1_change(const QString & text)
 {
 	QString search =  "Title like '%" + text + "%'";
@@ -237,9 +257,10 @@ void BookSystem::SL_insert1_change(const QString & text)
 
 }
 
+/*根据输入的ID进行筛选*/
 void BookSystem::SL_insert1_IDchange(const QString & text)
 {
-	QString search = "ID like '" + text + "%'";
+	QString search = "Book_ID like '" + text + "%'";
 	select_model_insert1->setFilter(search);
 	select_model_insert1->select();
 }

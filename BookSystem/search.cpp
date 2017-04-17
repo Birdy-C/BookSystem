@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "BookSystem.h"
 
-
+/*调整排序*/
 void BookSystem::SL_search_book_order()
 {
 	bool ok = ui.checkBox_2->checkState();
@@ -30,8 +30,8 @@ void BookSystem::SL_search_book_order()
 
 }
 
-
-void BookSystem::SL_search_book() 
+/*查找*/
+void BookSystem::SL_search_book(const QString &)
 {
 	QString search="";
 	search += "Title like '%" + ui.lineEdit->text() + "%'";
@@ -52,7 +52,7 @@ void BookSystem::SL_search_book()
 	//select_model->select();在前一个函数中已经存在
 }
 
-
+/*清空信息*/
 void BookSystem::SL_search_book_empty() 
 {
 	ui.lineEdit->setText("");

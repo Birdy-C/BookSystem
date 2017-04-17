@@ -40,7 +40,6 @@ public:
     QLineEdit *lineEdit;
     QLabel *label;
     QTableView *tableView_select;
-    QPushButton *pushButton_serach;
     QPushButton *pushButton_serach_empty;
     QCheckBox *checkBox;
     QLabel *label_2;
@@ -83,8 +82,17 @@ public:
     QLabel *label_14;
     QLineEdit *lineEdit_11;
     QWidget *tab_2;
+    QTableView *tableView_insert2;
+    QPushButton *pushButton_4;
+    QPushButton *pushButton_5;
+    QPushButton *pushButton_6;
+    QPushButton *pushButton_7;
     QWidget *tab;
     QWidget *card;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
+    QPlainTextEdit *plainTextEdit_3;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -98,7 +106,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(20, 30, 791, 501));
+        tabWidget->setGeometry(QRect(20, 40, 791, 501));
         search = new QWidget();
         search->setObjectName(QStringLiteral("search"));
         lineEdit = new QLineEdit(search);
@@ -110,12 +118,9 @@ public:
         tableView_select = new QTableView(search);
         tableView_select->setObjectName(QStringLiteral("tableView_select"));
         tableView_select->setGeometry(QRect(10, 110, 761, 351));
-        pushButton_serach = new QPushButton(search);
-        pushButton_serach->setObjectName(QStringLiteral("pushButton_serach"));
-        pushButton_serach->setGeometry(QRect(680, 40, 75, 23));
         pushButton_serach_empty = new QPushButton(search);
         pushButton_serach_empty->setObjectName(QStringLiteral("pushButton_serach_empty"));
-        pushButton_serach_empty->setGeometry(QRect(570, 40, 75, 23));
+        pushButton_serach_empty->setGeometry(QRect(540, 10, 75, 23));
         checkBox = new QCheckBox(search);
         checkBox->setObjectName(QStringLiteral("checkBox"));
         checkBox->setGeometry(QRect(660, 15, 101, 16));
@@ -282,6 +287,21 @@ public:
         tabWidget->addTab(insert, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
+        tableView_insert2 = new QTableView(tab_2);
+        tableView_insert2->setObjectName(QStringLiteral("tableView_insert2"));
+        tableView_insert2->setGeometry(QRect(20, 40, 751, 421));
+        pushButton_4 = new QPushButton(tab_2);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setGeometry(QRect(30, 10, 75, 23));
+        pushButton_5 = new QPushButton(tab_2);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setGeometry(QRect(680, 10, 75, 23));
+        pushButton_6 = new QPushButton(tab_2);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        pushButton_6->setGeometry(QRect(120, 10, 75, 23));
+        pushButton_7 = new QPushButton(tab_2);
+        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+        pushButton_7->setGeometry(QRect(270, 10, 75, 23));
         tabWidget->addTab(tab_2, QString());
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
@@ -289,6 +309,18 @@ public:
         card = new QWidget();
         card->setObjectName(QStringLiteral("card"));
         tabWidget->addTab(card, QString());
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(720, 10, 75, 23));
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(100, 10, 75, 23));
+        pushButton_3 = new QPushButton(centralWidget);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setGeometry(QRect(10, 10, 75, 23));
+        plainTextEdit_3 = new QPlainTextEdit(centralWidget);
+        plainTextEdit_3->setObjectName(QStringLiteral("plainTextEdit_3"));
+        plainTextEdit_3->setGeometry(QRect(320, 10, 341, 31));
         BookSystemClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(BookSystemClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -303,7 +335,7 @@ public:
 
         retranslateUi(BookSystemClass);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(BookSystemClass);
@@ -313,7 +345,6 @@ public:
     {
         BookSystemClass->setWindowTitle(QApplication::translate("BookSystemClass", "BookSystem", 0));
         label->setText(QApplication::translate("BookSystemClass", "\344\271\246\345\220\215", 0));
-        pushButton_serach->setText(QApplication::translate("BookSystemClass", " \346\237\245\350\257\242", 0));
         pushButton_serach_empty->setText(QApplication::translate("BookSystemClass", "\346\270\205\347\251\272", 0));
         checkBox->setText(QApplication::translate("BookSystemClass", "\344\273\205\346\230\276\347\244\272\346\234\211\344\275\231\351\207\217", 0));
         label_2->setText(QApplication::translate("BookSystemClass", "\347\261\273\345\210\253", 0));
@@ -338,9 +369,16 @@ public:
         pushButton_delete->setText(QApplication::translate("BookSystemClass", "\345\210\240\351\231\244", 0));
         label_14->setText(QApplication::translate("BookSystemClass", "ID", 0));
         tabWidget->setTabText(tabWidget->indexOf(insert), QApplication::translate("BookSystemClass", "\345\215\225\346\234\254\346\217\222\345\205\245/\345\210\240\351\231\244", 0));
+        pushButton_4->setText(QApplication::translate("BookSystemClass", "\350\257\273\345\217\226", 0));
+        pushButton_5->setText(QApplication::translate("BookSystemClass", "\346\217\222\345\205\245", 0));
+        pushButton_6->setText(QApplication::translate("BookSystemClass", "\346\270\205\347\251\272", 0));
+        pushButton_7->setText(QApplication::translate("BookSystemClass", "\345\210\240\351\231\244\346\255\244\346\235\241", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("BookSystemClass", "\346\211\271\351\207\217\345\205\245\345\272\223", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("BookSystemClass", "\345\200\237\345\207\272", 0));
         tabWidget->setTabText(tabWidget->indexOf(card), QApplication::translate("BookSystemClass", "\345\200\237\351\230\205\344\277\241\346\201\257", 0));
+        pushButton->setText(QApplication::translate("BookSystemClass", "\351\200\200\345\207\272", 0));
+        pushButton_2->setText(QApplication::translate("BookSystemClass", "\346\222\244\351\224\200\346\223\215\344\275\234", 0));
+        pushButton_3->setText(QApplication::translate("BookSystemClass", "\344\277\235\345\255\230", 0));
     } // retranslateUi
 
 };

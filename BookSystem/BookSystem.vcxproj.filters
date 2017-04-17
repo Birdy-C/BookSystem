@@ -46,9 +46,6 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_BookSystem.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_BookSystem.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_BookSystem.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -63,6 +60,12 @@
     </ClCompile>
     <ClCompile Include="insert1.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="insert2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BookSystem.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
