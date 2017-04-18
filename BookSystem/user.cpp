@@ -133,6 +133,7 @@ void BookSystem::SL_user_loadin()
 {
 	if (false == checkManager()) 
 	{
+		ui.lineEdit_17->setText("");
 		return;	
 	}
 

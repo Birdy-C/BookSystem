@@ -118,14 +118,14 @@ public:
     QWidget *tab_6;
     QWidget *gridLayoutWidget_3;
     QGridLayout *gridLayout_3;
+    QLineEdit *lineEdit_16;
     QLabel *label_23;
+    QLineEdit *lineEdit_15;
+    QLabel *label_21;
     QLabel *label_22;
     QGridLayout *gridLayout_4;
     QRadioButton *radioButton_5;
     QRadioButton *radioButton_6;
-    QLabel *label_21;
-    QLineEdit *lineEdit_15;
-    QLineEdit *lineEdit_16;
     QPushButton *pushButton_9;
     QWidget *tab_7;
     QTableView *tableView_info;
@@ -447,16 +447,31 @@ public:
         tab_6->setObjectName(QStringLiteral("tab_6"));
         gridLayoutWidget_3 = new QWidget(tab_6);
         gridLayoutWidget_3->setObjectName(QStringLiteral("gridLayoutWidget_3"));
-        gridLayoutWidget_3->setGeometry(QRect(290, 210, 181, 85));
+        gridLayoutWidget_3->setGeometry(QRect(300, 150, 181, 90));
         gridLayout_3 = new QGridLayout(gridLayoutWidget_3);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         gridLayout_3->setContentsMargins(0, 0, 0, 0);
+        lineEdit_16 = new QLineEdit(gridLayoutWidget_3);
+        lineEdit_16->setObjectName(QStringLiteral("lineEdit_16"));
+
+        gridLayout_3->addWidget(lineEdit_16, 1, 1, 1, 1);
+
         label_23 = new QLabel(gridLayoutWidget_3);
         label_23->setObjectName(QStringLiteral("label_23"));
 
         gridLayout_3->addWidget(label_23, 2, 0, 1, 1);
+
+        lineEdit_15 = new QLineEdit(gridLayoutWidget_3);
+        lineEdit_15->setObjectName(QStringLiteral("lineEdit_15"));
+
+        gridLayout_3->addWidget(lineEdit_15, 0, 1, 1, 1);
+
+        label_21 = new QLabel(gridLayoutWidget_3);
+        label_21->setObjectName(QStringLiteral("label_21"));
+
+        gridLayout_3->addWidget(label_21, 1, 0, 1, 1);
 
         label_22 = new QLabel(gridLayoutWidget_3);
         label_22->setObjectName(QStringLiteral("label_22"));
@@ -480,24 +495,9 @@ public:
 
         gridLayout_3->addLayout(gridLayout_4, 2, 1, 1, 1);
 
-        label_21 = new QLabel(gridLayoutWidget_3);
-        label_21->setObjectName(QStringLiteral("label_21"));
-
-        gridLayout_3->addWidget(label_21, 1, 0, 1, 1);
-
-        lineEdit_15 = new QLineEdit(gridLayoutWidget_3);
-        lineEdit_15->setObjectName(QStringLiteral("lineEdit_15"));
-
-        gridLayout_3->addWidget(lineEdit_15, 0, 1, 1, 1);
-
-        lineEdit_16 = new QLineEdit(gridLayoutWidget_3);
-        lineEdit_16->setObjectName(QStringLiteral("lineEdit_16"));
-
-        gridLayout_3->addWidget(lineEdit_16, 1, 1, 1, 1);
-
         pushButton_9 = new QPushButton(tab_6);
         pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
-        pushButton_9->setGeometry(QRect(400, 310, 75, 23));
+        pushButton_9->setGeometry(QRect(410, 250, 75, 23));
         tabWidget->addTab(tab_6, QString());
         tab_7 = new QWidget();
         tab_7->setObjectName(QStringLiteral("tab_7"));
@@ -555,7 +555,7 @@ public:
 
         retranslateUi(BookSystemClass);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(BookSystemClass);
@@ -611,10 +611,10 @@ public:
         pushButton_8->setText(QApplication::translate("BookSystemClass", "\345\210\240\351\231\244", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("BookSystemClass", "\347\224\250\346\210\267\344\277\241\346\201\257\347\256\241\347\220\206", 0));
         label_23->setText(QApplication::translate("BookSystemClass", "\347\261\273\345\210\253", 0));
+        label_21->setText(QApplication::translate("BookSystemClass", "\345\215\225\344\275\215", 0));
         label_22->setText(QApplication::translate("BookSystemClass", "\347\224\250\346\210\267\345\220\215", 0));
         radioButton_5->setText(QApplication::translate("BookSystemClass", "\350\200\201\345\270\210", 0));
         radioButton_6->setText(QApplication::translate("BookSystemClass", "\345\255\246\347\224\237", 0));
-        label_21->setText(QApplication::translate("BookSystemClass", "\345\215\225\344\275\215", 0));
         pushButton_9->setText(QApplication::translate("BookSystemClass", "\346\226\260\345\273\272", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("BookSystemClass", "\345\210\233\345\273\272\347\224\250\346\210\267", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_7), QApplication::translate("BookSystemClass", "\351\241\265", 0));

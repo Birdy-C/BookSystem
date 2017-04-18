@@ -15,6 +15,9 @@ BookSystem::BookSystem(QWidget *parent)
 	loadIn_Setboard();
 	SL_user_checkout();//³õÊ¼»¯µ½Î´µÇÂ¼×´Ì¬
 	ui.lineEdit_17->setEchoMode(QLineEdit::Password);
+	ui.plainTextEdit_3->setVisible(false);
+	QSqlQuery query("delete from book_temp;");
+
 }
 
 BookSystem::~BookSystem()
@@ -174,11 +177,20 @@ void BookSystem::initMotion()
 	connect(ui.lineEdit, SIGNAL(textEdited(const QString &)), this, SLOT(SL_search_book(const QString &)));
 	connect(ui.lineEdit_2, SIGNAL(textEdited(const QString &)), this, SLOT(SL_search_book(const QString &)));
 	connect(ui.lineEdit_3, SIGNAL(textEdited(const QString &)), this, SLOT(SL_search_book(const QString &)));
+	connect(ui.lineEdit_19, SIGNAL(textEdited(const QString &)), this, SLOT(SL_search_book(const QString &)));
+
 	connect(ui.checkBox_2, SIGNAL(released()), this, SLOT(SL_search_book_order()));
 	
+
 	connect(ui.pushButton_serach_empty, SIGNAL(clicked()), this, SLOT(SL_search_book_empty()));
 	
 	connect(ui.checkBox, SIGNAL(released()), this, SLOT(SL_search_book_reset()));
+	connect(ui.doubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(SL_search_book_reset(double)));
+	connect(ui.doubleSpinBox_2, SIGNAL(valueChanged(double)), this, SLOT(SL_search_book_reset()));
+	connect(ui.spinBox, SIGNAL(valueChanged(int)), this, SLOT(SL_search_book_reset(int)));
+	connect(ui.spinBox_2, SIGNAL(valueChanged(int)), this, SLOT(SL_search_book_reset(int)));
+
+
 
 	connect(ui.radioButton, SIGNAL(released()), this, SLOT(SL_search_book_order()));
 	connect(ui.radioButton_2, SIGNAL(released()), this, SLOT(SL_search_book_order()));

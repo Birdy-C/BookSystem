@@ -73,6 +73,14 @@ void BookSystem::SL_search_book_reset()
 {
 	SL_search_book(" ");
 }
+void BookSystem::SL_search_book_reset(int i)
+{
+	SL_search_book(" ");
+}
+void BookSystem::SL_search_book_reset(double i)
+{
+	SL_search_book(" ");
+}
 
 /*Çå¿ÕÐÅÏ¢*/
 void BookSystem::SL_search_book_empty() 

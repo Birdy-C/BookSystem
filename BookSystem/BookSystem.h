@@ -61,6 +61,9 @@ public slots:
 	void SL_search_book(const QString &);
 	void SL_search_book_order();
 	void SL_search_book_reset();
+	void SL_search_book_reset(int);
+	void SL_search_book_reset(double);
+
 	void SL_search_book_empty();
 	void SL_insert1_empty();
 	void SL_insert1_selectType(const QModelIndex &, const QModelIndex &);

@@ -110,7 +110,7 @@ bool BookSystem::borrow_precheck()
 			if (query.next())
 			{
 				date = query.value(0).toString();
-				QMessageBox::warning(0, QObject::tr("NO REMAINING"), "The Book <"+ Title +"> will be return at the date "+ date);
+				QMessageBox::warning(0, QObject::tr("NO REMAINING"), "The Book <"+ Title +"> will be returned at the date "+ date);
 			}
 			else
 			{
@@ -131,7 +131,7 @@ void BookSystem::SL_borrow( )
 		return;
 	QSqlQuery borrow;
 	borrow.prepare("insert into record(Book_ID, card_ID, borrow_data, return_data, manager_ID) values"
-		"(? , ? , ? , ? , '3150102459' ); ");
+		"(? , ? , ? , ? , ? ); ");
 	borrow.addBindValue(ui.lineEdit_14->text());
 	borrow.addBindValue(ui.lineEdit_12->text());
 
@@ -143,18 +143,17 @@ void BookSystem::SL_borrow( )
 
 	borrow.addBindValue(strday1);
 	borrow.addBindValue(strday2);
-	//borrow.addBindValue(manager_ID);
+	borrow.addBindValue(manager_ID);
 	//borrow.addBindValue("3150102459");
 
 	borrow.exec();
 
 	if (!borrow.isActive())
 	{
-		QMessageBox::critical(0, QObject::tr("Database Error"), "error when borrow the book,"
-			"please check the storage and input");
+		QMessageBox::critical(0, QObject::tr("Database Error"), "can't borrow the same book twice");
 		return ;
 	}
-	ui.lineEdit_12->setText("");
+	//ui.lineEdit_12->setText("");
 	ui.lineEdit_14->setText("");
 
 	borrow_renew();//¸üÐÂÏÔÊ¾
@@ -196,6 +195,8 @@ void BookSystem::SL_borrow_return()
 
 void BookSystem::borrow_renew() 
 {
+	SL_borrow_IDchange("");
+	SL_borrow_Bookchange("");
 	select_model_borrow_book->select();
 	select_model_borrow_ID->select();
 	select_model_borrow_info->select();
