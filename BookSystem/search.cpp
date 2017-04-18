@@ -31,6 +31,7 @@ void BookSystem::SL_search_book_order()
 }
 
 /*查找*/
+
 void BookSystem::SL_search_book(const QString &)
 {
 	QString search="";
@@ -40,16 +41,23 @@ void BookSystem::SL_search_book(const QString &)
 	search += " AND ";
 	search += "Author like '%" + ui.lineEdit_3->text() + "%'";
 
-	if (ui.checkBox->isChecked())
+	if ( ui.checkBox->checkState() )
 	{
 		search += " AND ";
 		search += " Stocks > 0 ";
 	}
 
-	ui.plainTextEdit->setPlainText(search);
+	//ui.plainTextEdit->setPlainText(search);
 	select_model->setFilter(search);
 	SL_search_book_order();
 	//select_model->select();在前一个函数中已经存在
+}
+
+
+/*这个函数只是为了连接信号*/
+void BookSystem::SL_search_book_reset()
+{
+	SL_search_book(" ");
 }
 
 /*清空信息*/

@@ -178,7 +178,7 @@ void BookSystem::SL_delete()
 
 	QString ID= ui.lineEdit_11->text();	
 	QSqlQuery query_getStocks("select Stocks,Number from book where Book_id = '" + ID + "'");
-	ui.plainTextEdit_2->setPlainText("select Stocks,Number from book where Book_id = '" + ID + "'");
+	ui.plainTextEdit_3->setPlainText("select Stocks,Number from book where Book_id = '" + ID + "'");
 
 	int Stocks_int, All_int;
 	if (query_getStocks.next())

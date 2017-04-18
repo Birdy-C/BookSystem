@@ -22,13 +22,30 @@ void BookSystem::SL_borrow_Bookchange(const QString &text)
 	select_model_borrow_book->select();
 }
 
+void BookSystem::SL_borrow_select(const QModelIndex &, const QModelIndex &)
+{
+	QModelIndex index = ui.tableView_borrow->currentIndex();
+	QModelIndex temp;
+	QString str;
+	{
+		temp = index.sibling(index.row(), 0);
+		str = temp.data().toString();
+		ui.lineEdit_12->setText(str);
+
+		temp = index.sibling(index.row(), 1);
+		str = temp.data().toString();
+		ui.lineEdit_14->setText(str);
+	}
+}
+
+
 void BookSystem::SL_borrow( )
 {
-	if (false == load_statues)
-		return;
+	//if (false == load_statues)
+	//	return;
 	QSqlQuery borrow;
 	borrow.prepare("insert into record(Book_ID, card_ID, borrow_data, return_data, manager_ID) values"
-		"(? , ? , ? , ? , ? ); ");
+		"(? , ? , ? , ? , '3150102459' ); ");
 	borrow.addBindValue(ui.lineEdit_14->text());
 	borrow.addBindValue(ui.lineEdit_12->text());
 
@@ -40,23 +57,26 @@ void BookSystem::SL_borrow( )
 
 	borrow.addBindValue(strday1);
 	borrow.addBindValue(strday2);
-	borrow.addBindValue(manager_ID);
+	//borrow.addBindValue(manager_ID);
+	//borrow.addBindValue("3150102459");
 
 	borrow.exec();
 
 	if (!borrow.isActive())
 	{
-		QMessageBox::critical(0, QObject::tr("Database Error"), "error when return the book,"
+		QMessageBox::critical(0, QObject::tr("Database Error"), "error when borrow the book,"
 			"please check the storage and input");
 		return ;
 	}
+	ui.lineEdit_12->setText("");
+	ui.lineEdit_14->setText("");
 
+	borrow_renew();//更新显示
 
 }
 
 void BookSystem::SL_borrow_return()
 {
-	db.transaction();
 	int curRow = ui.tableView_borrow->currentIndex().row();
 	//获取选中的行
 	QSqlRecord record = select_model_borrow_ID->record(curRow);
@@ -76,16 +96,15 @@ void BookSystem::SL_borrow_return()
 		delete_record.prepare("delete from record where Book_ID=? AND card_ID=?");
 		delete_record.addBindValue(Book_ID);
 		delete_record.addBindValue(card_ID);
-
-		if (!delete_record.isActive())
+		bool check = delete_record.exec();
+		if (!check)
 		{
 			QMessageBox::warning(0, QObject::tr("Database Error"), "Error when delete");
 			return;
 		}
-		borrow_renew();//更新显示
-
-
 	}
+	borrow_renew();//更新显示
+
 
 }
 

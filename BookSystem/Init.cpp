@@ -13,13 +13,15 @@ BookSystem::BookSystem(QWidget *parent)
 	initSQL();
 	initMotion();
 	loadIn_Setboard();
-
+	SL_user_checkout();//初始化到未登录状态
+	ui.lineEdit_17->setEchoMode(QLineEdit::Password);
+	
 }
 
 BookSystem::~BookSystem()
 {
 	db.commit(); 
-	SL_insert2_delete();
+	//SL_insert2_delete();
 	delete select_model;
 }
 
@@ -31,7 +33,14 @@ void BookSystem::empty(int)
 	SL_search_book("");
 	//part NO.2
 	SL_insert1_empty();
-	select_model_insert1->select();//更新显示
+	select_model_insert1->select();		//更新显示
+	//part NO.4
+	borrow_renew();
+
+	select_model_user->select();			//更新显示
+	select_model_View_info->select();		//更新显示
+	select_model_View_info_2->select();		//更新显示
+
 
 }
 
@@ -121,6 +130,29 @@ bool BookSystem::initSQL()
 	ui.tableView_borrow_info->setEditTriggers(QAbstractItemView::NoEditTriggers); //不可编辑
 	ui.tableView_borrow_info->setSelectionBehavior(QAbstractItemView::SelectRows);//整行选中
 
+	//NO5
+	select_model_user = new QSqlTableModel(this);
+	select_model_user->setTable("library_card");
+	select_model_user->select();
+	ui.tableView_user->setModel(select_model_user);
+	//ui.tableView_user->setEditTriggers(QAbstractItemView::NoEditTriggers); //不可编辑
+	ui.tableView_user->setSelectionBehavior(QAbstractItemView::SelectRows);//整行选中
+
+	select_model_View_info = new QSqlTableModel(this);
+	select_model_View_info->setTable("record");
+	select_model_View_info->select();
+	ui.tableView_info->setModel(select_model_View_info);
+	ui.tableView_info->setEditTriggers(QAbstractItemView::NoEditTriggers); //不可编辑
+	ui.tableView_info->setSelectionBehavior(QAbstractItemView::SelectRows);//整行选中
+
+	select_model_View_info_2 = new QSqlTableModel(this);
+	select_model_View_info_2->setTable("manager");
+	select_model_View_info_2->select();
+	ui.tableView_info_2->setModel(select_model_View_info_2);
+	ui.tableView_info_2->setEditTriggers(QAbstractItemView::NoEditTriggers); //不可编辑
+	ui.tableView_info_2->setSelectionBehavior(QAbstractItemView::SelectRows);//整行选中
+
+	
 
 	return true;  	
 }
@@ -135,16 +167,16 @@ void BookSystem::initMotion()
 	connect(ui.pushButton_3, SIGNAL(clicked()), this, SLOT(SL_transaction()));
 
 	
-
 	//NO.1 SELECT
 	//connect(ui.pushButton_serach, SIGNAL(clicked()),this, SLOT(SL_search_book()));发现可以不加查询按钮
 	connect(ui.lineEdit, SIGNAL(textEdited(const QString &)), this, SLOT(SL_search_book(const QString &)));
 	connect(ui.lineEdit_2, SIGNAL(textEdited(const QString &)), this, SLOT(SL_search_book(const QString &)));
 	connect(ui.lineEdit_3, SIGNAL(textEdited(const QString &)), this, SLOT(SL_search_book(const QString &)));
-
-	connect(ui.pushButton_serach_empty, SIGNAL(clicked()), this, SLOT(SL_search_book_empty()));
-
 	connect(ui.checkBox_2, SIGNAL(released()), this, SLOT(SL_search_book_order()));
+	
+	connect(ui.pushButton_serach_empty, SIGNAL(clicked()), this, SLOT(SL_search_book_empty()));
+	
+	connect(ui.checkBox, SIGNAL(released()), this, SLOT(SL_search_book_reset()));
 
 	connect(ui.radioButton, SIGNAL(released()), this, SLOT(SL_search_book_order()));
 	connect(ui.radioButton_2, SIGNAL(released()), this, SLOT(SL_search_book_order()));
@@ -174,10 +206,20 @@ void BookSystem::initMotion()
 	connect(ui.lineEdit_12, SIGNAL(textEdited(const QString &)), this, SLOT(SL_borrow_IDchange(const QString &)));
 	connect(ui.pushButton_10, SIGNAL(clicked()), this, SLOT(SL_borrow()));
 	connect(ui.pushButton_11, SIGNAL(clicked()), this, SLOT(SL_borrow_return()));
+	connect(ui.tableView_borrow->selectionModel(), SIGNAL(currentRowChanged(const QModelIndex &, const QModelIndex &)),
+		this, SLOT(SL_borrow_select(const QModelIndex &, const QModelIndex &)));
+
+	
 
 	//NO 5
 	connect(ui.pushButton_9, SIGNAL(clicked()), this, SLOT(SL_user_insert()));
+	connect(ui.pushButton_8, SIGNAL(clicked()), this, SLOT(SL_user_delete()));
+	connect(ui.lineEdit_13, SIGNAL(textEdited(const QString &)), this, SLOT(SL_user_select(const QString &)));
+
 	
+	//登录
+	connect(ui.pushButton_12, SIGNAL(clicked()), this, SLOT(SL_user_loadin()));
+	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(SL_user_checkout()));
 
 }
 

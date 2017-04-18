@@ -42,9 +42,9 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
-    <widget class="QWidget" name="tab_1">
+    <widget class="QWidget" name="search">
      <attribute name="title">
       <string>检索</string>
      </attribute>
@@ -216,8 +216,18 @@
        <string>排序</string>
       </property>
      </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>271</width>
+        <height>51</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="insert">
      <attribute name="title">
       <string>单本插入/删除</string>
      </attribute>
@@ -336,6 +346,16 @@
        </rect>
       </property>
      </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>341</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
@@ -399,7 +419,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_3">
+    <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>批量入库</string>
      </attribute>
@@ -466,7 +486,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_4">
+    <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>借阅管理</string>
      </attribute>
@@ -476,7 +496,7 @@
         <x>20</x>
         <y>120</y>
         <width>751</width>
-        <height>181</height>
+        <height>111</height>
        </rect>
       </property>
      </widget>
@@ -543,9 +563,9 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>350</y>
+        <y>270</y>
         <width>751</width>
-        <height>121</height>
+        <height>201</height>
        </rect>
       </property>
      </widget>
@@ -566,7 +586,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>320</y>
+        <y>250</y>
         <width>54</width>
         <height>12</height>
        </rect>
@@ -612,9 +632,9 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_5">
+    <widget class="QWidget" name="card">
      <attribute name="title">
-      <string>用户信息管理</string>
+      <string>用户信息</string>
      </attribute>
      <widget class="QLabel" name="label_16">
       <property name="geometry">
@@ -639,7 +659,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QTableView" name="tableView_user">
+     <widget class="QTableView" name="tableView_select_3">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -652,8 +672,8 @@
      <widget class="QPushButton" name="pushButton_8">
       <property name="geometry">
        <rect>
-        <x>680</x>
-        <y>70</y>
+        <x>20</x>
+        <y>60</y>
         <width>75</width>
         <height>23</height>
        </rect>
@@ -662,112 +682,17 @@
        <string>删除</string>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_6">
-     <attribute name="title">
-      <string>创建用户</string>
-     </attribute>
-     <widget class="QWidget" name="gridLayoutWidget_3">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>210</y>
-        <width>181</width>
-        <height>85</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_23">
-         <property name="text">
-          <string>类别</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_22">
-         <property name="text">
-          <string>用户名</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="0" column="1">
-          <widget class="QRadioButton" name="radioButton_5">
-           <property name="text">
-            <string>老师</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QRadioButton" name="radioButton_6">
-           <property name="text">
-            <string>学生</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_21">
-         <property name="text">
-          <string>单位</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit_15"/>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_16"/>
-       </item>
-      </layout>
-     </widget>
      <widget class="QPushButton" name="pushButton_9">
       <property name="geometry">
        <rect>
-        <x>400</x>
-        <y>310</y>
+        <x>120</x>
+        <y>60</y>
         <width>75</width>
         <height>23</height>
        </rect>
       </property>
       <property name="text">
        <string>新建</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_7">
-     <attribute name="title">
-      <string>页</string>
-     </attribute>
-     <widget class="QTableView" name="tableView_info">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>761</width>
-        <height>461</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_8">
-     <attribute name="title">
-      <string>页</string>
-     </attribute>
-     <widget class="QTableView" name="tableView_info_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>761</width>
-        <height>461</height>
-       </rect>
       </property>
      </widget>
     </widget>
@@ -814,83 +739,11 @@
    <widget class="QPlainTextEdit" name="plainTextEdit_3">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>320</x>
       <y>10</y>
       <width>341</width>
       <height>31</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_12">
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>25</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>登录</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_24">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>10</y>
-      <width>120</width>
-      <height>12</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_17">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>30</y>
-      <width>113</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_18">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>5</y>
-      <width>113</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_25">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>10</y>
-      <width>24</width>
-      <height>12</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>账号</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_26">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>35</y>
-      <width>54</width>
-      <height>12</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>密码</string>
     </property>
    </widget>
   </widget>
