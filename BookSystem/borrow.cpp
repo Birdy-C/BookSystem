@@ -38,11 +38,97 @@ void BookSystem::SL_borrow_select(const QModelIndex &, const QModelIndex &)
 	}
 }
 
+bool BookSystem::borrow_precheck()
+{
+	QString Book_ID = ui.lineEdit_14->text();
+	QString card_ID = ui.lineEdit_12->text();
+	QString Type;
+	QString Title;
+	int number;
+	//Type=student/teacher
+	{
+		QSqlQuery query("select Type from library_card where card_ID = '" + card_ID + "'");
+		if (query.next())
+		{
+			Type = query.value(0).toString();
+
+		}
+		else
+		{
+			QMessageBox::warning(0, QObject::tr("INACCURACY DATA"), "Please check the card ");
+			return false;
+		}
+	
+	}
+	//number
+	{
+		QSqlQuery query("select count ( Book_ID ) from record where card_ID = '" + card_ID + "'");
+		if (query.next())
+		{
+			number = query.value(0).toInt();
+		}
+		else
+		{
+			QMessageBox::warning(0, QObject::tr("INACCURACY DATA"), "Please check the card");
+			return false;
+		}
+	} 
+	//check if the card has storage
+	{
+		if (Type == "student" && number >= 3)
+		{
+			QMessageBox::warning(0, QObject::tr("FULL CARD"), "Sorry, card for student can only borrow 3 books at most. ");
+			return false;
+
+		}
+		if (Type == "teacher" && number >= 5)
+		{
+			QMessageBox::warning(0, QObject::tr("FULL CARD"), "Sorry, card for teacher can only borrow 5 books at most. ");
+			return false;
+
+		}
+	}
+	//check the stock
+	{
+		int stocks;
+		QSqlQuery query("select Stocks,Title from book where Book_id = '" + Book_ID + "'");
+		if (query.next())
+		{
+			stocks = query.value(0).toInt();
+			Title = query.value(1).toString();
+		}
+		else
+		{
+			QMessageBox::warning(0, QObject::tr("INACCURACY DATA"), "Please check the BOOK ");
+			return false;
+		}
+
+		if (0 == stocks) 
+		{
+			QString date;
+			QSqlQuery query("select min(return_data) from record where Book_id = '" + Book_ID + "'");
+			if (query.next())
+			{
+				date = query.value(0).toString();
+				QMessageBox::warning(0, QObject::tr("NO REMAINING"), "The Book <"+ Title +"> will be return at the date "+ date);
+			}
+			else
+			{
+				QMessageBox::warning(0, QObject::tr("INACCURACY DATA"), "Please check the BOOK record");
+			}
+
+			return false;
+		}
+
+	}
+
+	return true;
+}
 
 void BookSystem::SL_borrow( )
 {
-	//if (false == load_statues)
-	//	return;
+	if (false == borrow_precheck())
+		return;
 	QSqlQuery borrow;
 	borrow.prepare("insert into record(Book_ID, card_ID, borrow_data, return_data, manager_ID) values"
 		"(? , ? , ? , ? , '3150102459' ); ");

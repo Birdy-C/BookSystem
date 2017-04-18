@@ -33,6 +33,7 @@ private:
 	bool SL_insert_book(QString Type, QString Title, QString Publisher, QString Publish_year, QString  Author, QString Price, QString Number);
 	void borrow_renew();
 	bool checkManager();
+	bool borrow_precheck();
 	Ui::BookSystemClass ui;
 	QSqlDatabase db;
 	QSqlTableModel *select_model;//

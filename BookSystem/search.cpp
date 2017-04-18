@@ -40,6 +40,20 @@ void BookSystem::SL_search_book(const QString &)
 	search += "Type like '%" + ui.lineEdit_2->text() + "%'";
 	search += " AND ";
 	search += "Author like '%" + ui.lineEdit_3->text() + "%'";
+	search += " AND ";
+	search += "Title like '%" + ui.lineEdit->text() + "%'";
+	search += " AND ";
+	search += "Publisher like '%" + ui.lineEdit_19->text() + "%'";
+	search += " AND ";
+	search += "Publish_year >=" + ui.spinBox->text() ;
+	search += " AND ";
+	search += "Publish_year <=" + ui.spinBox_2->text();
+	search += " AND ";
+	search += "Price >=" + ui.doubleSpinBox->text();
+	search += " AND ";
+	search += "Price <=" + ui.doubleSpinBox_2->text();
+
+
 
 	if ( ui.checkBox->checkState() )
 	{

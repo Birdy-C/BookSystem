@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -23,6 +24,7 @@
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableView>
@@ -54,6 +56,16 @@ public:
     QRadioButton *radioButton;
     QCheckBox *checkBox_2;
     QLabel *label_4;
+    QLabel *label_27;
+    QLineEdit *lineEdit_19;
+    QDoubleSpinBox *doubleSpinBox;
+    QDoubleSpinBox *doubleSpinBox_2;
+    QSpinBox *spinBox;
+    QSpinBox *spinBox_2;
+    QLabel *label_28;
+    QLabel *label_29;
+    QLabel *label_30;
+    QLabel *label_31;
     QWidget *tab_2;
     QTableView *tableView_insert1;
     QWidget *gridLayoutWidget_2;
@@ -216,6 +228,43 @@ public:
         label_4 = new QLabel(tab_1);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(340, 80, 24, 12));
+        label_27 = new QLabel(tab_1);
+        label_27->setObjectName(QStringLiteral("label_27"));
+        label_27->setGeometry(QRect(20, 45, 36, 12));
+        lineEdit_19 = new QLineEdit(tab_1);
+        lineEdit_19->setObjectName(QStringLiteral("lineEdit_19"));
+        lineEdit_19->setGeometry(QRect(60, 40, 113, 20));
+        doubleSpinBox = new QDoubleSpinBox(tab_1);
+        doubleSpinBox->setObjectName(QStringLiteral("doubleSpinBox"));
+        doubleSpinBox->setGeometry(QRect(220, 40, 62, 22));
+        doubleSpinBox_2 = new QDoubleSpinBox(tab_1);
+        doubleSpinBox_2->setObjectName(QStringLiteral("doubleSpinBox_2"));
+        doubleSpinBox_2->setGeometry(QRect(310, 40, 62, 22));
+        doubleSpinBox_2->setMaximum(999.99);
+        doubleSpinBox_2->setValue(999);
+        spinBox = new QSpinBox(tab_1);
+        spinBox->setObjectName(QStringLiteral("spinBox"));
+        spinBox->setGeometry(QRect(440, 40, 60, 22));
+        spinBox->setMinimum(1800);
+        spinBox->setMaximum(2017);
+        spinBox_2 = new QSpinBox(tab_1);
+        spinBox_2->setObjectName(QStringLiteral("spinBox_2"));
+        spinBox_2->setGeometry(QRect(520, 40, 60, 22));
+        spinBox_2->setMinimum(1800);
+        spinBox_2->setMaximum(2017);
+        spinBox_2->setValue(2017);
+        label_28 = new QLabel(tab_1);
+        label_28->setObjectName(QStringLiteral("label_28"));
+        label_28->setGeometry(QRect(190, 45, 54, 12));
+        label_29 = new QLabel(tab_1);
+        label_29->setObjectName(QStringLiteral("label_29"));
+        label_29->setGeometry(QRect(290, 45, 10, 12));
+        label_30 = new QLabel(tab_1);
+        label_30->setObjectName(QStringLiteral("label_30"));
+        label_30->setGeometry(QRect(410, 45, 54, 12));
+        label_31 = new QLabel(tab_1);
+        label_31->setObjectName(QStringLiteral("label_31"));
+        label_31->setGeometry(QRect(505, 45, 10, 12));
         tabWidget->addTab(tab_1, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
@@ -473,7 +522,7 @@ public:
         pushButton_3->setGeometry(QRect(10, 10, 75, 23));
         plainTextEdit_3 = new QPlainTextEdit(centralWidget);
         plainTextEdit_3->setObjectName(QStringLiteral("plainTextEdit_3"));
-        plainTextEdit_3->setGeometry(QRect(170, 10, 341, 31));
+        plainTextEdit_3->setGeometry(QRect(180, 10, 341, 31));
         pushButton_12 = new QPushButton(centralWidget);
         pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
         pushButton_12->setGeometry(QRect(720, 25, 75, 23));
@@ -506,7 +555,7 @@ public:
 
         retranslateUi(BookSystemClass);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(BookSystemClass);
@@ -526,6 +575,11 @@ public:
         radioButton->setText(QApplication::translate("BookSystemClass", "\344\271\246\345\220\215", 0));
         checkBox_2->setText(QApplication::translate("BookSystemClass", "\345\217\215\345\220\221", 0));
         label_4->setText(QApplication::translate("BookSystemClass", "\346\216\222\345\272\217", 0));
+        label_27->setText(QApplication::translate("BookSystemClass", "\345\207\272\347\211\210\347\244\276", 0));
+        label_28->setText(QApplication::translate("BookSystemClass", "\344\273\267\346\240\274", 0));
+        label_29->setText(QApplication::translate("BookSystemClass", "-", 0));
+        label_30->setText(QApplication::translate("BookSystemClass", "\345\271\264\344\273\275", 0));
+        label_31->setText(QApplication::translate("BookSystemClass", "-", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_1), QApplication::translate("BookSystemClass", "\346\243\200\347\264\242", 0));
         label_5->setText(QApplication::translate("BookSystemClass", "\344\271\246\345\220\215", 0));
         label_7->setText(QApplication::translate("BookSystemClass", "\345\207\272\347\211\210\347\244\276", 0));

@@ -15,7 +15,6 @@ BookSystem::BookSystem(QWidget *parent)
 	loadIn_Setboard();
 	SL_user_checkout();//初始化到未登录状态
 	ui.lineEdit_17->setEchoMode(QLineEdit::Password);
-	
 }
 
 BookSystem::~BookSystem()
@@ -31,6 +30,8 @@ void BookSystem::empty(int)
 	// part NO.1
 	SL_search_book_empty();
 	SL_search_book("");
+
+
 	//part NO.2
 	SL_insert1_empty();
 	select_model_insert1->select();		//更新显示
@@ -72,8 +73,8 @@ bool BookSystem::initSQL()
 	//NO1 SELECT
 	select_model = new QSqlTableModel(this);
 	select_model->setTable("book");
-	select_model->select();
 	ui.tableView_select->setModel(select_model);
+	select_model->select();
 	ui.tableView_select->setEditTriggers(QAbstractItemView::NoEditTriggers); //不可编辑
 	ui.tableView_select->setSelectionBehavior(QAbstractItemView::SelectRows);//整行选中
 
@@ -83,8 +84,9 @@ bool BookSystem::initSQL()
 	//select_model_insert1->removeColumns(7, 2);	//remove Number & Stocks
 	//select_model_insert1->removeColumn(0);		//remove Book_id
 
-	select_model_insert1->select();
 	ui.tableView_insert1->setModel(select_model_insert1);
+	select_model_insert1->select();
+
 	ui.tableView_insert1->setEditTriggers(QAbstractItemView::NoEditTriggers); //不可编辑
 	ui.tableView_insert1->setSelectionBehavior(QAbstractItemView::SelectRows);//整行选中
 

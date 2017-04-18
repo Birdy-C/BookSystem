@@ -172,7 +172,8 @@ bool BookSystem::SL_insert_book(QString Type, QString Title, QString Publisher,
 
 
 }
-/*É¾³ý²Ù×÷*/
+
+ /*É¾³ý²Ù×÷*/
 void BookSystem::SL_delete()
 {
 
