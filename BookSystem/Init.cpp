@@ -246,7 +246,6 @@ void BookSystem::SL_rollback()
 	else
 	{
 		QMessageBox::about(0, QObject::tr("Database Error"), "Success in Rollback");
-
 	}
 	empty(0);//更新界面
 	db.transaction();

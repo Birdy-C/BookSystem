@@ -104,6 +104,7 @@ bool BookSystem::SL_insert_book(QString Type, QString Title, QString Publisher,
 {
 	QString ID;
 
+	//如果标题为空
 	if (""== Title )
 	{
 		QMessageBox::warning(0, QObject::tr("INACCURACY DATA"), "Please put in accurate name");
@@ -121,14 +122,14 @@ bool BookSystem::SL_insert_book(QString Type, QString Title, QString Publisher,
 	QString number = QString::number(number_in, 10);//取整
 
 
-
+	//根据type生成ID
 	QSqlQuery query_getID("select MAX(Book_id)+1 from book where Type = '" + Type + "'");
 
 	if (query_getID.next())
 	{
 		ID = query_getID.value(0).toString();
 	}
-	if (ID == "")
+	if (ID == "")//如果这个类型还没有书
 	{
 		QSqlQuery query_temp("select Type_number * 1000 + 1 from type where Book_type = '" + Type + "'");
 		ui.plainTextEdit_3->setPlainText(ID);
@@ -169,8 +170,6 @@ bool BookSystem::SL_insert_book(QString Type, QString Title, QString Publisher,
 	}
 
 	return true;
-
-
 }
 
  /*删除操作*/

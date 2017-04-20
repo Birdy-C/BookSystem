@@ -140,6 +140,7 @@ void BookSystem::SL_user_loadin()
 	QMessageBox::about(0, QObject::tr("LOAD IN"), "Welcome ! " + manager_name + ".");
 
 	load_statues = true;
+	//manager_ID = ui.lineEdit_18->text().toInt();
 	ui.label_24->setText("Welcome ! " + manager_name + ".");
 	ui.lineEdit_17->setText("");
 	ui.lineEdit_18->setText("");

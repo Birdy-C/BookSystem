@@ -106,7 +106,7 @@ bool BookSystem::borrow_precheck()
 		if (0 == stocks) 
 		{
 			QString date;
-			QSqlQuery query("select min(return_data) from record where Book_id = '" + Book_ID + "'");
+			QSqlQuery query("select MIN(return_data) from record where Book_id = '" + Book_ID + "'");
 			if (query.next())
 			{
 				date = query.value(0).toString();
